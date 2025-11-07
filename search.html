@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emlak İlan Sitesi</title>
+    <!-- Importing Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Importing Lucide icons -->
+    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
+    <!-- Custom script to initialize icons -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Simple style for active tab */
+        .tab-active {
+            border-bottom: 2px solid #3b82f6; /* blue-500 */
+            color: #3b82f6;
+        }
+        .tab-active svg {
+            color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Header / Search Bar Section -->
+    <header class="bg-white shadow-md">
+        <!-- Placeholder for top navigation (not clearly visible in image) -->
+        <nav class="container mx-auto px-4 h-12 flex items-center justify-between text-sm">
+            <div>
+                <a href="#" class="text-2xl font-bold text-blue-600">Lasasd</a>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="text-gray-600 hover:text-blue-600">Giriş Yap</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Üye Ol</a>
+                <a href="#" class="bg-blue-100 text-blue-700 px-3 py-1 rounded-md font-medium">Ücretsiz İlan Ver</a>
+            </div>
+        </nav>
+
+        <!-- Main Search Area -->
+        <div class="bg-gray-200" style="background-image: url('https://placehold.co/1920x350/E0E0E0/B0B0B0?text=Site+Banner'); background-size: cover; background-position: center;">
+            <div class="container mx-auto px-4 py-8">
+                <!-- Tabs -->
+                <div class="bg-white rounded-t-lg shadow-lg flex">
+                    <button class="tab-active flex-1 flex items-center justify-center space-x-2 px-4 py-3 font-medium text-gray-600">
+                        <i data-lucide="home" class="w-5 h-5"></i>
+                        <span>Konut</span>
+                    </button>
+                    <button class="flex-1 flex items-center justify-center space-x-2 px-4 py-3 font-medium text-gray-600 hover:bg-gray-50">
+                        <i data-lucide="briefcase" class="w-5 h-5"></i>
+                        <span>İşyeri</span>
+                    </button>
+                    <button class="flex-1 flex items-center justify-center space-x-2 px-4 py-3 font-medium text-gray-600 hover:bg-gray-50">
+                        <i data-lucide="map" class="w-5 h-5"></i>
+                        <span>Arsa</span>
+                    </button>
+                    <button class="flex-1 flex items-center justify-center space-x-2 px-4 py-3 font-medium text-gray-600 hover:bg-gray-50">
+                        <i data-lucide="building" class="w-5 h-5"></i>
+                        <span>Bina</span>
+                    </button>
+                    <button class="flex-1 flex items-center justify-center space-x-2 px-4 py-3 font-medium text-gray-600 hover:bg-gray-50">
+                        <i data-lucide="calendar-clock" class="w-5 h-5"></i>
+                        <span>Devremülk</span>
+                    </button>
+                    <button class="flex-1 flex items-center justify-center space-x-2 px-4 py-3 font-medium text-gray-600 hover:bg-gray-50">
+                        <i data-lucide="hotel" class="w-5 h-5"></i>
+                        <span>Turistik Tesis</span>
+                    </button>
+                </div>
+
+                <!-- Search Form -->
+                <div class="bg-white p-4 rounded-b-lg shadow-lg">
+                    <div class="grid grid-cols-1 md:grid-cols-10 gap-2">
+                        <!-- Row 1 of inputs -->
+                        <select class="md:col-span-1 border border-gray-300 rounded-md p-2 text-sm">
+                            <option>Satılık</option>
+                            <option>Kiralık</option>
+                        </select>
+                        <select class="md:col-span-2 border border-gray-300 rounded-md p-2 text-sm">
+                            <option>Konut</option>
+                        </select>
+                        <select class="md:col-span-2 border border-gray-300 rounded-md p-2 text-sm">
+                            <option>İl</option>
+                        </select>
+                        <select class="md:col-span-2 border border-gray-300 rounded-md p-2 text-sm">
+                            <option>İlçe</option>
+                        </select>
+                        <select class="md:col-span-3 border border-gray-300 rounded-md p-2 text-sm">
+                            <option>Mahalle</option>
+                        </select>
+                        
+                        <!-- Row 2 of inputs -->
+                        <div class="md:col-span-2 flex space-x-2">
+                            <input type="text" placeholder="Min TL" class="w-1/2 border border-gray-300 rounded-md p-2 text-sm">
+                            <input type="text" placeholder="Max TL" class="w-1/2 border border-gray-300 rounded-md p-2 text-sm">
+                        </div>
+                        <select class="md:col-span-2 border border-gray-300 rounded-md p-2 text-sm">
+                            <option>Oda Sayısı</option>
+                            <option>1+1</option>
+                            <option>2+1</option>
+                            <option>3+1</option>
+                        </select>
+                        
+                        <a href="#" class="md:col-span-2 flex items-center justify-center text-sm text-blue-600 hover:underline">
+                            Daha fazla seçenek
+                        </a>
+                        
+                        <button class="md:col-span-2 bg-white border border-gray-300 text-gray-700 rounded-md p-2 text-sm font-medium hover:bg-gray-50">
+                            Haritada Ara
+                        </button>
+                        <button class="md:col-span-2 bg-blue-500 text-white rounded-md p-2 text-sm font-medium hover:bg-blue-600">
+                            Ara
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-4 py-6">
+        <!-- Breadcrumbs -->
+        <div class="mb-4 text-sm text-gray-500">
+            <a href="#" class="hover:underline">Emlak</a> &gt; 
+            <a href="#" class="hover:underline">Konut</a> &gt; 
+            <span class="text-gray-700">Satılık</span>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-6">
+            
+            <!-- Left Sidebar -->
+            <aside class="w-full lg:w-1/5">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold text-lg mb-3">Emlak</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="flex justify-between text-blue-600 hover:underline"><strong>Konut</strong> <span>(636.560)</span></a></li>
+                        <li><a href="#" class="flex justify-between text-gray-700 hover:underline">İş Yeri <span>(113.440)</span></a></li>
+                        <li><a href="#" class="flex justify-between text-gray-700 hover:underline">Arsa <span>(216.790)</span></a></li>
+                        <li><a href="#" class="flex justify-between text-gray-700 hover:underline">Konut Projeleri <span>(1.442)</span></a></li>
+                        <li><a href="#" class="flex justify-between text-gray-700 hover:underline">Bina <span>(5.437)</span></a></li>
+                        <li><a href="#" class="flex justify-between text-gray-700 hover:underline">Devre Mülk <span>(2.217)</span></a></li>
+                        <li><a href="#" class="flex justify-between text-gray-700 hover:underline">Turistik Tesis <span>(1.467)</span></a></li>
+                    </ul>
+                    <a href="#" class="text-sm text-blue-600 hover:underline mt-4 inline-block">Tüm Emlak Kategorileri</a>
+                </div>
+            </aside>
+
+            <!-- Center Content -->
+            <section class="w-full lg:w-3/5">
+                <!-- Emlak Vitrin -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-2xl font-semibold">Emlak Vitrin</h2>
+                        <a href="#" class="text-sm text-blue-600 hover:underline">Tüm vitrin ilanlarını göster</a>
+                    </div>
+
+                    <!-- Listing Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                        <!-- Repeat this block for each listing -->
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="https://placehold.co/150x100/CCCCCC/4A4A4A?text=İlan" alt="İlan" class="w-full h-24 object-cover">
+                            <div class="p-2 text-sm">
+                                <h4 class="font-medium truncate">Arsa 17. Cadd...</h4>
+                                <p class="text-gray-500 truncate">yeniemlak ar...</p>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="https://placehold.co/150x100/CCCCCC/4A4A4A?text=İlan" alt="İlan" class="w-full h-24 object-cover">
+                            <div class="p-2 text-sm">
+                                <h4 class="font-medium truncate">BAĞCILAR MAH...</h4>
+                                <p class="text-gray-500 truncate">ESENYURT YEŞİ...</p>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="https://placehold.co/150x100/CCCCCC/4A4A4A?text=İlan" alt="İlan" class="w-full h-24 object-cover">
+                            <div class="p-2 text-sm">
+                                <h4 class="font-medium truncate">SON FIRSATI! G...</h4>
+                                <p class="text-gray-500 truncate">Satılık Tarla</p>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="https://placehold.co/150x100/CCCCCC/4A4A4A?text=İlan" alt="İlan" class="w-full h-24 object-cover">
+                            <div class="p-2 text-sm">
+                                <h4 class="font-medium truncate">SİLİVRİ SELİM...</h4>
+                                <p class="text-gray-500 truncate">POLATLI KUŞÇU</p>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="https://placehold.co/150x100/CCCCCC/4A4A4A?text=İlan" alt="İlan" class="w-full h-24 object-cover">
+                            <div class="p-2 text-sm">
+                                <h4 class="font-medium truncate">SAHİBİNDEN GÖ...</h4>
+                                <p class="text-gray-500 truncate">Muğla Dalaman...</p>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="https://placehold.co/150x100/CCCCCC/4A4A4A?text=İlan" alt="İlan" class="w-full h-24 object-cover">
+                            <div class="p-2 text-sm">
+                                <h4 class="font-medium truncate">Bursa-Çerokla...</h4>
+                                <p class="text-gray-500 truncate">KAÇMAZADLİYE...</p>
+                            </div>
+                        </div>
+                         <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="https://placehold.co/150x100/CCCCCC/4A4A4A?text=İlan" alt="İlan" class="w-full h-24 object-cover">
+                            <div class="p-2 text-sm">
+                                <h4 class="font-medium truncate">Aydın Didim H...</h4>
+                                <p class="text-gray-500 truncate">HAYMANCIN BAL...</p>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="https://placehold.co/150x100/CCCCCC/4A4A4A?text=İlan" alt="İlan" class="w-full h-24 object-cover">
+                            <div class="p-2 text-sm">
+                                <h4 class="font-medium truncate">Giresun Göre...</h4>
+                                <p class="text-gray-500 truncate">MEHMET AKİFTE...</p>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="https://placehold.co/150x100/CCCCCC/4A4A4A?text=İlan" alt="İlan" class="w-full h-24 object-cover">
+                            <div class="p-2 text-sm">
+                                <h4 class="font-medium truncate">KAPAKLI'DA SA...</h4>
+                                <p class="text-gray-500 truncate">SUSANOĞLUNA Y...</p>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="https://placehold.co/150x100/CCCCCC/4A4A4A?text=İlan" alt="İlan" class="w-full h-24 object-cover">
+                            <div class="p-2 text-sm">
+                                <h4 class="font-medium truncate">SİTE İÇİNDE M...</h4>
+                                <p class="text-gray-500 truncate">Panoramik Den...</p>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="https://placehold.co/150x100/CCCCCC/4A4A4A?text=İlan" alt="İlan" class="w-full h-24 object-cover">
+                            <div class="p-2 text-sm">
+                                <h4 class="font-medium truncate">POLATLI KUŞÇU</h4>
+                                <p class="text-gray-500 truncate">SALİ FAZ, AKİ...</p>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="https://placehold.co/150x100/CCCCCC/4A4A4A?text=İlan" alt="İlan" class="w-full h-24 object-cover">
+                            <div class="p-2 text-sm">
+                                <h4 class="font-medium truncate">yatırımlık ta...</h4>
+                                <p class="text-gray-500 truncate">İki yola araz...</p>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="https://placehold.co/150x100/CCCCCC/4A4A4A?text=İlan" alt="İlan" class="w-full h-24 object-cover">
+                            <div class="p-2 text-sm">
+                                <h4 class="font-medium truncate">Sarı İlyan Sa...</h4>
+                                <p class="text-gray-500 truncate">sahibinden sa...</p>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="https://placehold.co/150x100/CCCCCC/4A4A4A?text=İlan" alt="İlan" class="w-full h-24 object-cover">
+                            <div class="p-2 text-sm">
+                                <h4 class="font-medium truncate">SELİMPAŞA STA...</h4>
+                                <p class="text-gray-500 truncate">SALİ PAZARIND...</p>
+                            </div>
+                        </div>
+                        <!-- ... add more listings as needed -->
+                    </div>
+                </div>
+
+                <!-- Magaza Vitrin -->
+                <div class="bg-white p-4 rounded-lg shadow mt-6">
+                    <h2 class="text-2xl font-semibold mb-4">Mağaza Vitrin</h2>
+                    <div class="flex flex-wrap justify-center items-center gap-4">
+                        <img src="https://placehold.co/120x60/F0F0F0/888888?text=LOGO+1" alt="Logo" class="h-12 border rounded">
+                        <img src="https://placehold.co/120x60/F0F0F0/888888?text=LOGO+2" alt="Logo" class="h-12 border rounded">
+                        <img src="https://placehold.co/120x60/F0F0F0/888888?text=LOGO+3" alt="Logo" class="h-12 border rounded">
+                        <img src="https://placehold.co/120x60/F0F0F0/888888?text=LOGO+4" alt="Logo" class="h-12 border rounded">
+                        <img src="https://placehold.co/120x60/F0F0F0/888888?text=LOGO+5" alt="Logo" class="h-12 border rounded">
+                        <img src="https://placehold.co/120x60/F0F0F0/888888?text=LOGO+6" alt="Logo" class="h-12 border rounded">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Sidebar (Ad) -->
+            <aside class="w-full lg:w-1/5">
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <img src="https://placehold.co/300x600/E0E0E0/999999?text=Reklam+Alanı+(300x600)" alt="Advertisement" class="w-full">
+                </div>
+            </aside>
+
+        </div>
+
+    </main>
+
+    <!-- Footer SEO Text -->
+    <footer class="container mx-auto px-4 py-8 mt-6">
+        <div class="bg-white p-6 rounded-lg shadow text-sm text-gray-600">
+            <h3 class="font-semibold text-lg text-black mb-2">Emlak kategorisi hakkında daha fazla bilgi:</h3>
+            <p class="mb-2">
+                Türkiye'nin en büyük emlak sitesi Sahibinden Emlak kategorimizde; onlarca farklı kategoride, birçok farklı özellikte ve her bütçeye uygun <strong>emlak konut</strong>, işyeri, satılık bina, turistik tesis, <strong>satılık daire</strong>, kiralık ev, günlük kiralık daire, yazlık ve çok daha fazlasını bu kategoride bulabilirsiniz. Bu sayfada tüm emlak kategorileri ve ilan sayılarını görebilir, aradığınız kritere en uygun ilanı kolayca bulabilirsiniz.
+            </p>
+            <p class="mb-2">
+                Sahibinden.com'un emlak kategorisindeki farklı kategorideki konular, detaylı bilgi içeren Sahibinden altındaki ev seçenekleri, iş yeri ve arsa ya da villalardan oluşan geniş bir yelpaze sunar. sahibinden.com <strong>kiralık ev</strong> seçenekleri, yatırım amaçlı <strong>satılık arsa</strong> seçenekleri, konforlu <strong>yazlık</strong> alternatifleri ve size en <strong>uygun kiralık daire</strong> seçenekleri gibi birçok farklı başlıkta detaylı bilgi sunar. sahibinden.com <strong>konut</strong> fiyatlarını kolaylıkla inceleyebilir, filtreleme özellikleri sayesinde aradığınız kriterlere uygun ilanlara hızlıca ulaşabilirsiniz. 
+            </p>
+            <p>
+                Emlak kategorisinde farklı özellikleri, yatırım amaçlı <strong>satılık arsa</strong> seçenekleri içerisinde tarla, <strong>bahçe</strong> gibi birçok arazi ilanları ve <strong>arsa fiyatları</strong> arasından talep ettiğiniz emlağı kolayca bulabilirsiniz. <strong>Emlak projeleri</strong> aşamasındaki emlak yatırımları ve Türkiye'nin her bölgesinden devremülk fırsatlarına da ulaşabileceğiniz emlak kategorisinde her bütçeye uygun birçok seçenek mevcuttur. <strong>Kiralık iş yeri</strong> seçenekleri ile işinizi büyütebilir veya yeni bir iş kurabilirsiniz. 
+            </p>
+        </div>
+    </footer>
+
+    <!-- Script to initialize Lucide icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>
