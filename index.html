@@ -1,78 +1,765 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LASA Technology – Building Modern Websites & Apps, Hosting and Domain Services</title>
-<meta name="description" content="LASA Technology – Innovating the way you connect and grow. We build websites, mobile apps, and provide hosting & domain services.">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LASA Technology - Modern Digital Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --gradient-start: #667eea;
+            --gradient-end: #764ba2;
+            --section-bg: #f8f9fa;
+            --footer-bg: #2d3748;
+            --shadow: rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --text-color: #e2e8f0;
+            --card-bg: #2d3748;
+            --section-bg: #0f1419;
+            --footer-bg: #0a0e14;
+            --shadow: rgba(0,0,0,0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px var(--shadow);
+            transition: padding 0.3s;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle, .lang-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .theme-toggle:hover, .lang-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            padding: 150px 2rem 100px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s 0.2s backwards;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--gradient-start);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s 0.4s backwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 80px 2rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gradient-start);
+        }
+
+        /* Projects */
+        #projects {
+            background: var(--section-bg);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Form */
+        #contact {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+        }
+
+        #contact h2 {
+            color: white;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-button {
+            background: white;
+            color: var(--gradient-start);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+
+        .form-message.success {
+            background: rgba(255, 255, 255, 0.2);
+            display: block;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 2px 2px 25px rgba(0,0,0,0.4);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--footer-bg);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--gradient-start);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--gradient-start);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RTL Support for Arabic */
+        [dir="rtl"] {
+            text-align: right;
+        }
+
+        [dir="rtl"] .nav-links,
+        [dir="rtl"] .nav-right,
+        [dir="rtl"] .nav-controls {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .footer-content {
+            text-align: right;
+        }
+
+        [dir="rtl"] .whatsapp-float {
+            left: 30px;
+            right: auto;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 60px;
+                flex-direction: column;
+                background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+                width: 100%;
+                padding: 2rem;
+                transition: left 0.3s;
+                gap: 1rem;
+            }
+
+            [dir="rtl"] .nav-links {
+                left: auto;
+                right: -100%;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            [dir="rtl"] .nav-links.active {
+                right: 0;
+                left: auto;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            [dir="rtl"] .whatsapp-float {
+                left: 20px;
+                right: auto;
+            }
+        }
+    </style>
 </head>
 <body>
-<header class="header">
-  <div class="container">
-    <div class="brand"><div class="logo-circle">LT</div><div>LASA Technology</div></div>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="services.html">Services</a>
-      <a href="projects.html">Projects</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">LASA Technology</a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <div class="nav-right">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" onclick="closeMenu()" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                    <li><a href="#services" onclick="closeMenu()" data-en="Services" data-ar="الخدمات">Services</a></li>
+                    <li><a href="#projects" onclick="closeMenu()" data-en="Projects" data-ar="المشاريع">Projects</a></li>
+                    <li><a href="#contact" onclick="closeMenu()" data-en="Contact" data-ar="تواصل">Contact</a></li>
+                </ul>
+                <div class="nav-controls">
+                    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+                    <button class="lang-toggle" onclick="toggleLanguage()" id="langToggle">العربية</button>
+                </div>
+            </div>
+        </div>
     </nav>
-  </div>
-</header>
 
-<section class="hero">
-  <div class="container">
-    <h1>Building Modern Websites & Apps, Hosting and Domain Services</h1>
-    <p class="small">Innovating the way you connect and grow.</p>
-    <a class="cta" href="https://wa.me/905370255103" target="_blank">Chat on WhatsApp</a>
-    <a class="cta secondary" href="contact.html">Get a Quote</a>
-  </div>
-</section>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1 data-en="Innovating the Way You Connect and Grow" data-ar="نبتكر طريقة تواصلك ونموك">Innovating the Way You Connect and Grow</h1>
+        <p data-en="Modern digital solutions for businesses ready to thrive online" data-ar="حلول رقمية حديثة للشركات الجاهزة للازدهار عبر الإنترنت">Modern digital solutions for businesses ready to thrive online</p>
+        <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" data-en="Get Started Today" data-ar="ابدأ اليوم">
+            Get Started Today
+        </button>
+    </section>
 
-<section id="about" class="section">
-  <div class="container">
-    <h2>About LASA Technology</h2>
-    <p class="small">LASA Technology delivers modern digital solutions—websites, mobile apps, hosting and domain services—helping businesses grow online.</p>
-  </div>
-</section>
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 data-en="Our Services" data-ar="خدماتنا">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3 data-en="Web Development" data-ar="تطوير المواقع">Web Development</h3>
+                    <p data-en="Responsive, SEO-friendly websites tailored for your business needs. Modern designs that convert visitors into customers." data-ar="مواقع ويب متجاوبة وصديقة لمحركات البحث مصممة خصيصاً لاحتياجات عملك. تصاميم عصرية تحول الزوار إلى عملاء.">Responsive, SEO-friendly websites tailored for your business needs. Modern designs that convert visitors into customers.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3 data-en="Mobile Apps" data-ar="تطبيقات الجوال">Mobile Apps</h3>
+                    <p data-en="Android & iOS apps to connect you with customers anywhere. Native performance with beautiful interfaces." data-ar="تطبيقات أندرويد وآي أو إس للتواصل مع عملائك في أي مكان. أداء أصلي مع واجهات جميلة.">Android & iOS apps to connect you with customers anywhere. Native performance with beautiful interfaces.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3 data-en="Hosting & Domains" data-ar="الاستضافة والنطاقات">Hosting & Domains</h3>
+                    <p data-en="Fast, reliable hosting with domain registration and setup. Keep your business online 24/7 with 99.9% uptime." data-ar="استضافة سريعة وموثوقة مع تسجيل النطاق والإعداد. حافظ على عملك متصلاً على مدار الساعة بنسبة 99.9٪.">Fast, reliable hosting with domain registration and setup. Keep your business online 24/7 with 99.9% uptime.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3 data-en="Maintenance & Support" data-ar="الصيانة والدعم">Maintenance & Support</h3>
+                    <p data-en="Ongoing updates and support to keep your site secure and running smoothly. We're here when you need us." data-ar="تحديثات ودعم مستمر للحفاظ على موقعك آمناً ويعمل بسلاسة. نحن هنا عندما تحتاجنا.">Ongoing updates and support to keep your site secure and running smoothly. We're here when you need us.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <h3 data-en="E-Commerce Solutions" data-ar="حلول التجارة الإلكترونية">E-Commerce Solutions</h3>
+                    <p data-en="Online stores with secure payment integration. Start selling online with professional shopping experiences." data-ar="متاجر إلكترونية مع دمج الدفع الآمن. ابدأ البيع عبر الإنترنت مع تجربة تسوق احترافية.">Online stores with secure payment integration. Start selling online with professional shopping experiences.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3 data-en="Digital Marketing" data-ar="التسويق الرقمي">Digital Marketing</h3>
+                    <p data-en="SEO optimization and digital marketing strategies to grow your online presence and reach more customers." data-ar="تحسين محركات البحث واستراتيجيات التسويق الرقمي لتنمية تواجدك على الإنترنت والوصول إلى المزيد من العملاء.">SEO optimization and digital marketing strategies to grow your online presence and reach more customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="services" class="section">
-  <div class="container">
-    <h2>Our Services</h2>
-    <div class="services-grid">
-      <div class="card"><h3>Website Development</h3><p class="small">Responsive, SEO-friendly websites tailored for your needs.</p></div>
-      <div class="card"><h3>Mobile Apps</h3><p class="small">Android & iOS apps to connect you with customers.</p></div>
-      <div class="card"><h3>Hosting & Domains</h3><p class="small">Fast hosting with domain registration and setup.</p></div>
-      <div class="card"><h3>Maintenance</h3><p class="small">Ongoing updates and support to keep your site secure.</p></div>
-    </div>
-  </div>
-</section>
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 data-en="Featured Projects" data-ar="المشاريع المميزة">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">🏢</div>
+                    <div class="project-content">
+                        <h3 data-en="Small Business Website" data-ar="موقع الأعمال الصغيرة">Small Business Website</h3>
+                        <p data-en="Modern, professional website for local businesses with contact forms and service showcases." data-ar="موقع ويب حديث واحترافي للشركات المحلية مع نماذج الاتصال وعرض الخدمات.">Modern, professional website for local businesses with contact forms and service showcases.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">📲</div>
+                    <div class="project-content">
+                        <h3 data-en="Customer Mobile App" data-ar="تطبيق العملاء">Customer Mobile App</h3>
+                        <p data-en="Customer-facing mobile application with real-time updates and seamless user experience." data-ar="تطبيق جوال موجه للعملاء مع تحديثات فورية وتجربة مستخدم سلسة.">Customer-facing mobile application with real-time updates and seamless user experience.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">🛍️</div>
+                    <div class="project-content">
+                        <h3 data-en="E-Commerce Store" data-ar="متجر إلكتروني">E-Commerce Store</h3>
+                        <p data-en="Full-featured online store with secure payment processing and inventory management." data-ar="متجر إلكتروني متكامل المميزات مع معالجة دفع آمنة وإدارة المخزون.">Full-featured online store with secure payment processing and inventory management.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="projects" class="section">
-  <div class="container">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="project-item"><div><h3>Business Website</h3><p class="small">Modern small-business website.</p></div></div>
-      <div class="project-item"><div><h3>Mobile App</h3><p class="small">Customer-facing mobile app.</p></div></div>
-      <div class="project-item"><div><h3>E-commerce</h3><p class="small">Online store with secure payments.</p></div></div>
-    </div>
-  </div>
-</section>
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 data-en="Get In Touch" data-ar="تواصل معنا">Get In Touch</h2>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name" data-en="Name" data-ar="الاسم">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" data-en="Email" data-ar="البريد الإلكتروني">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone" data-en="Phone" data-ar="الهاتف">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="message" data-en="Message" data-ar="الرسالة">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-button" data-en="Send Message" data-ar="إرسال الرسالة">Send Message</button>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+    </section>
 
-<footer>
-  <div class="container">
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-      <div>© <span id="year"></span> LASA Technology</div>
-      <div><a href="index.html">Home</a> · <a href="contact.html">Contact</a> · <a href="https://wa.me/905370255103" target="_blank">WhatsApp</a></div>
-    </div>
-  </div>
-</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/905370255103?text=Hello%20LASA%20Technology" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <span>💬</span>
+    </a>
 
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>LASA Technology</h3>
+                <p data-en="Innovating the way you connect and grow online with modern digital solutions." data-ar="نبتكر الطريقة التي تتواصل وتنمو بها عبر الإنترنت مع الحلول الرقمية الحديثة.">Innovating the way you connect and grow online with modern digital solutions.</p>
+            </div>
+            <div class="footer-section">
+                <h3 data-en="Quick Links" data-ar="روابط سريعة">Quick Links</h3>
+                <p><a href="#services" style="color: white; text-decoration: none;" data-en="Services" data-ar="الخدمات">Services</a></p>
+                <p><a href="#projects" style="color: white; text-decoration: none;" data-en="Projects" data-ar="المشاريع">Projects</a></p>
+                <p><a href="#contact" style="color: white; text-decoration: none;" data-en="Contact" data-ar="تواصل">Contact</a></p>
+            </div>
+            <div class="footer-section">
+                <h3 data-en="Connect With Us" data-ar="تواصل معنا">Connect With Us</h3>
+                <div class="social-links">
+                    <a href="https://wa.me/905370255103" target="_blank" title="WhatsApp">💬</a>
+                </div>
+                <p style="margin-top: 1rem;">+90 537 025 5103</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p data-en="© 2025 LASA Technology. All rights reserved." data-ar="© 2025 LASA Technology. جميع الحقوق محفوظة.">&copy; 2025 LASA Technology. All rights reserved.</p>
+        </div>
+    </footer>
 
-<a class="whatsapp-float" href="https://wa.me/905370255103" target="_blank" aria-label="Chat on WhatsApp">💬</a>
-<script src="script.js"></script>
+    <script>
+        // Language toggle
+        let currentLang = 'en';
+        
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            const html = document.documentElement;
+            const langToggle = document.getElementById('langToggle');
+            
+            if (currentLang === 'ar') {
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                langToggle.textContent = 'English';
+            } else {
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', 'en');
+                langToggle.textContent = 'العربية';
+            }
+            
+            // Update all text elements
+            document.querySelectorAll('[data-en][data-ar]').forEach(element => {
+                element.textContent = element.getAttribute('data-' + currentLang);
+            });
+        }
+
+        // Dark mode toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            const currentTheme = html.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                html.removeAttribute('data-theme');
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.getElementById('themeToggle').textContent = '☀️';
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            const formMessage = document.getElementById('formMessage');
+            const form = event.target;
+            
+            const successMsg = currentLang === 'ar' 
+                ? 'شكراً لك! تم إرسال رسالتك بنجاح. سنعود إليك قريباً!'
+                : 'Thank you! Your message has been sent successfully. We\'ll get back to you soon!';
+            
+            formMessage.textContent = successMsg;
+            formMessage.className = 'form-message success';
+            
+            form.reset();
+            
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.padding = '0.5rem 0';
+            } else {
+                nav.style.padding = '1rem 0';
+            }
+        });
+    </script>
 </body>
 </html>
